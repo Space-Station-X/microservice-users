@@ -1,15 +1,17 @@
 package com.practice.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.*;
 
 @Entity
 @Table(name = "usuarios")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +34,7 @@ public class Usuario {
     private String deTelefono;
 
     @JsonProperty("registrationDate") 
-    private Date feReg;
+    private LocalDate feReg;
 
     @JsonProperty("isActive")
     private String stActivo;

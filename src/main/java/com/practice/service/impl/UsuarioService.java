@@ -1,14 +1,22 @@
 package com.practice.service.impl;
 
-import java.util.List;
-
-import com.practice.entity.Usuario;
+import com.practice.RequestDto.*;
+import com.practice.ResponseDto.*;
 
 public interface UsuarioService {
-    public List<Usuario> listarUsuarios();
+    /*public List<Usuario> listarUsuarios();
     public Usuario obtenerUsuarioPorId(Integer id);
     public Usuario obtenerUsuarioPorAlias(String alias);
     public Usuario guardarUsuario(Usuario usuario);
     public Usuario actualizarUsuario(Integer id,Usuario usuario);
-    public Usuario eliminarUsuario(Integer id);
+    public Usuario eliminarUsuario(Integer id);*/
+    UserPageResponseDto findAllUser(int page, int size);
+
+    UserCreateResponseDto createUser(UserCreateRequestDto userCreateRequestDto);
+
+    UserResponseDto findByUserId(Integer id);
+
+    UserResponseDto updateUser(Integer id, UserUpdateRequestDto userUpdateRequestDto);
+
+    void deleteUser(Integer id);
 }
