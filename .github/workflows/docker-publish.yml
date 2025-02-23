@@ -41,3 +41,13 @@ jobs:
 
       - name: Trigger Render Deploy
         run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK}}"
+
+      - name: Install Koyeb CLI
+        run: |
+          curl -sSL https://koyeb.com/install.sh | sh
+          echo "${HOME}/.koyeb/bin" >> $GITHUB_PATH
+
+      - name: Redeploy service on Koyeb
+        run: koyeb service redeploy yearling-eulalie/microservice-user --token $KOYEB_API_TOKEN
+        env:
+          KOYEB_API_TOKEN: ${{ secrets.KOYEB_API_TOKEN }}
