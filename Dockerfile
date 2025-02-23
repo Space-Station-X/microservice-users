@@ -1,6 +1,6 @@
 FROM amazoncorretto:17-alpine-jdk
 WORKDIR /app
 EXPOSE 8761
-ADD ./target/eureka-server-0.0.1-SNAPSHOT.jar eureka-server.jar
-ENTRYPOINT ["java", "-jar", "eureka-server.jar"]
+ADD ./target/microservice-users-0.0.1-SNAPSHOT.jar microservice-users.jar
+ENTRYPOINT ["java", "-jar", "microservice-users.jar"]
 
