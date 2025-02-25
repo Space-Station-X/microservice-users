@@ -6,6 +6,5 @@ pom.xml
 .idea
 *.iml
 *.log
-Dockerfile
 docker-compose.yml
 .github
