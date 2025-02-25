@@ -12,6 +12,11 @@ jobs:
   verify-build:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    env:
+      PUBLIC_URL_DB: ${{ secrets.PUBLIC_URL_DB }}
+      PUBLIC_USER: ${{ secrets.PUBLIC_USER }}
+      PUBLIC_PASSWORD: ${{ secrets.PUBLIC_PASSWORD }}
+      EUREKA_SERVER: ${{ secrets.EUREKA_SERVER }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,7 +44,6 @@ jobs:
       PUBLIC_USER: ${{ secrets.PUBLIC_USER }}
       PUBLIC_PASSWORD: ${{ secrets.PUBLIC_PASSWORD }}
       EUREKA_SERVER: ${{ secrets.EUREKA_SERVER }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -72,9 +76,13 @@ jobs:
         run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK}}"
 
       - name: Install Koyeb CLI
+        if: steps.install-koyeb-cli.outputs.installed != 'true'
+        id: install-koyeb-cli
         run: |
           curl -sSL https://koyeb.com/install.sh | sh
           echo "${HOME}/.koyeb/bin" >> $GITHUB_PATH
+        outputs:
+          installed: 'true'
 
       - name: Redeploy service on Koyeb
         run: koyeb service redeploy yearling-eulalie/microservice-user --token $KOYEB_API_TOKEN
