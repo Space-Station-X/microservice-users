@@ -1,0 +1,9 @@
+.git
+.gitignore
+.vscode/
+pom.xml
+.idea
+*.iml
+*.log
+docker-compose.yml
+.github
