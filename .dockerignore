@@ -1,7 +1,6 @@
 .git
 .gitignore
 .vscode/
-target
 pom.xml
 .idea
 *.iml
